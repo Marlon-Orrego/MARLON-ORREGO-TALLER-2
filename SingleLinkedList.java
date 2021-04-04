@@ -35,27 +35,22 @@ public class SingleLinkedList<T extends Number & Comparable> implements ILists<T
     @Override
     public void addLast(T d) {
         
-        //1. Crear un nuevo nodo
         Node<T> newNode = new Node<>(d);
-        //2. Modificar el siguiente de la cabeza 
-        
         Node<T> currentNode=head;
         Node<T> currentNode2=head;
 
         boolean checked=false;
         
-        while(currentNode2.getNextNode()!=null){    
-            if(currentNode2.getData()==d){
+        while((currentNode2!=null)&&(checked==false) ){    
+            if((int)currentNode2.getData()==(int)d){
                 System.out.println("EL DATO YA SE ENCUENTRA EN LA LISTA ");
                 checked=true;
             }
+           
             currentNode2=currentNode2.getNextNode();
-        }
-            if(currentNode2.getData()==d){
-                System.out.println("EL DATO YA SE ENCUENTRA EN LA LISTA ");
-                checked=true;
-            }
             
+        }
+           
         if (checked==false){
             while(currentNode.getNextNode()!=null){
                     currentNode=currentNode.getNextNode();
@@ -69,7 +64,7 @@ public class SingleLinkedList<T extends Number & Comparable> implements ILists<T
     @Override
     public void addAfter(T a, T b) {
         
-        
+        boolean checked=false;
         //1. Crear un nuevo nodo
         Node<T> newNode = new Node<>(a);
         //2.Recorrer Lista hasta encontrar el nodo con el dato
@@ -81,9 +76,13 @@ public class SingleLinkedList<T extends Number & Comparable> implements ILists<T
             //4. El siguiente del nodo referenciado serà el nuevo nodo
             i.setNextNode(newNode);
             cont++;
+            checked=true;
             }
             }
-
+        
+        if (checked==false){
+            System.out.println("NO SE ENCUENTRA EL DATO");
+        }
     }
 
     @Override
