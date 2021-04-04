@@ -26,24 +26,52 @@ public class Lists {
         CircularSingleLinkedList<Integer> csll2= new CircularSingleLinkedList<>();
         CircularDoubleLinkedList<Integer> cdll= new CircularDoubleLinkedList<>();
         
+              
+//        dll.addOrdered(555);
+//        dll.addOrdered(77);
+//        dll.addOrdered(79);
+//        dll.addOrdered(80);
+//        dll.addOrdered(5);
+//        dll.addOrdered(98);
+//        dll.addOrdered(900);
+//        dll.addOrdered(55);
+//        dll.deleteFirts();
+//        System.out.println(dll.showData());   
+//        
+        cdll.add(87);
+        cdll.add(8);
+        cdll.add(7);
+        cdll.add(870);
+        cdll.add(8700);
+        cdll.add(8447);
+        System.out.println(cdll.showData());
+        DoubleNode currentNode=cdll.split(870);
+        System.out.println(cdll.printSinceNodo(currentNode));
         
+        
+        
+        /*
+         sll.add(85);
+        sll.add(42);
+        sll.add(5231);
+        sll.addLast(42);
+        System.out.println(sll.showData());
+        System.out.println(sll.cantidadDatos());
       
-
-        
         dll.addOrdered(555);
         dll.addOrdered(100000000);
         dll.addOrdered(8);
         dll.addOrdered(77);
         dll.addOrdered(7);
         dll.addOrdered(7352);
-        dll.addOrdered(721547);
-        
+        dll.addOrdered(721547);     
+        dll.delete(7);
         System.out.println(dll.showData());   
         dll.deleteLast();
         System.out.println(dll.showData());
 
         
-        /*        
+           
         csll.add(7);
         csll.add(75);
         csll.add(777);
@@ -52,7 +80,7 @@ public class Lists {
         csll2.add(5);
         csll2.add(452);
         csll2.add(66);
-
+        csll.deleteFirts();
         System.out.println(csll.showData());
         System.out.println(csll2.showData());
         csll.joinLists(csll, csll2);
@@ -61,7 +89,14 @@ public class Lists {
         System.out.println(csll2.showData());
         CircularSingleLinkedList<Integer> csll3=csll.joinLists(csll, csll2);
         System.out.println("La lista con los datos juntos es: "+csll3.showData());
-        
+        cdll.add(87);
+        cdll.add(8);
+        cdll.add(7);
+        cdll.add(870);
+        cdll.add(8700);
+        cdll.add(8447);
+        CircularDoubleLinkedList<Integer> newcdll=cdll.split(870);
+        System.out.println(newcdll.showData());
         cdll.add(87);
         cdll.add(8);
         cdll.add(7);
@@ -70,8 +105,8 @@ public class Lists {
         cdll.add(8447);
         System.out.println(cdll.showData());
         System.out.println(cdll.search(24));    
-        */
-
+        cdll.split(870);
+*/
     }
 //Ejemplo de genérico
 //https://docs.oracle.com/javase/tutorial/java/generics/types.html
