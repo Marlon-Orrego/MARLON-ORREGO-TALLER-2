@@ -98,90 +98,89 @@ public class CircularDoubleLinkedList<T extends Number & Comparable> implements 
                     checkFounded=true;
                 }
                 currentNode=currentNode.getPreviousNode();
-            }while(currentNode!=head.getPreviousNode() && checkFounded!=true);
+            }while(currentNode!=head.getPreviousNode()&& checkFounded!=true);
+            
+            if((int)currentNode.getNextNode().getData()==(int)d){
+                checkFounded=true;
+            }
         }
         
         return checkFounded;
     }
     
-    public void reverse(){
-      int c=0,t=1;
-      DoubleNode<T> newNode = head;  
-      DoubleNode<T> currentNode = head;
-      DoubleNode<T> Temp = head;
-
-      DoubleNode<T> newNode2 = head.getNextNode();
-      
-      if (isEmpty()) {
-            System.out.println("Lista vacía");
-        } else {
-          
-         while(newNode.getNextNode()!=head){
-             newNode=newNode.getNextNode();
-             c++;
-             System.out.println("ciclo 1 bien");
-         }
-         int temp=0;
-         
-         do{
-             currentNode=head;
-             DoubleNode<T> nextNodeCurrent = currentNode.getNextNode();
-             
-             while(currentNode.getNextNode()!=head){
-                 
-                 if((int) currentNode.getData() > (int) currentNode.getNextNode().getData()){
-                     
-                     temp=(int) currentNode.getData();
-                     temp=(int) currentNode.getData();
-                     
-                     Temp=currentNode;
-                     currentNode.setData(currentNode.getNextNode().getData());
-                     currentNode.getNextNode().setData(Temp.getData());
-                     
-                     currentNode=currentNode.getNextNode();
-                     
-                 }else{
-                     
-                     currentNode=currentNode.getNextNode();
-                 }
-             }
-
-         }while(currentNode.getNextNode()!=null);
-      
-      }
+    public String showReverse(){
+        DoubleNode<T> currentNode=head;
+        String cadena="";
+        boolean aux=false;
+        if (isEmpty()) {
+            return "Lista vacia";
+        }else if(currentNode==head.getPreviousNode()){
+            cadena=currentNode.getData().toString();
+        } 
         
+        else {
+            
+            while(currentNode.getNextNode()!=head && aux==false){
+                currentNode=currentNode.getNextNode();
+                
+            }
+           
+            
+            while(currentNode!=head){
+                
+                cadena=cadena+" "+currentNode.getData().toString();
+                currentNode=currentNode.getPreviousNode();
+               
+                }
+                cadena=cadena+" "+currentNode.getData().toString();
+        }
+        
+        return cadena; 
       
    
     }
-    public void split(T d){
+    public DoubleNode split(T d){
         
         DoubleNode currentNode=head;
         DoubleNode auxNode2=head;
         DoubleNode auxNode3=head;
+        CircularDoubleLinkedList<Integer> newCdll= new CircularDoubleLinkedList<>();
 
         
-        while(auxNode3.getNextNode().getData()!=head){
+        while(auxNode3.getNextNode()!=head){
             auxNode3=auxNode3.getNextNode();
+            
         }
         
-        while(currentNode.getNextNode().getData()!=head){
-             if(currentNode.getData()==d){
-                 
-                 //El siguiente del nodo del dato sera la cabeza 
-                 currentNode.setNextNode(head);
-                 //El nodo previo del nodo siguiente donde esta el dato es la cola en este caso auxnode3
-                 currentNode.getNextNode().setPreviousNode(auxNode3);
-                 //El nodo siguiente de la cola sera el siguiente del nodo siguiente donde esta el dato
-                 auxNode3.setNextNode(currentNode.getNextNode());
-                 //El previo de la cabeza sera el nodo del dato
-                 head.setPreviousNode(currentNode);
-             }
-             
-             
-        }
-       
+        while(currentNode.getNextNode()!=head){
+            
+             if((int)currentNode.getData()==(int)d){
+                auxNode2=currentNode.getNextNode();
+                auxNode2.setPreviousNode(auxNode3);
+                auxNode3.setNextNode(auxNode2);
+                currentNode.setNextNode(head);
+                head.setPreviousNode(currentNode);
                 
+                return auxNode2;
+             }
+             currentNode=currentNode.getNextNode();
+        }
+       return auxNode2;
+    }
+    
+    public String printSinceNodo(DoubleNode currentNode){
+        String cadena="";
+        currentNode=head;
+        boolean checked=false;
         
+        do{
+            cadena=cadena+" "+currentNode.getData().toString();
+            currentNode=currentNode.getNextNode();
+            
+        }while(currentNode!=head && checked==false);
+            
+     
+        return cadena;
     
     }
 }
