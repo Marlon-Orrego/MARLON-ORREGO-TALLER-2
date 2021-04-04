@@ -40,12 +40,30 @@ public class SingleLinkedList<T extends Number & Comparable> implements ILists<T
         //2. Modificar el siguiente de la cabeza 
         
         Node<T> currentNode=head;
-        while(currentNode.getNextNode()!=null){
+        Node<T> currentNode2=head;
+
+        boolean checked=false;
+        
+        while(currentNode2.getNextNode()!=null){    
+            if(currentNode2.getData()==d){
+                System.out.println("EL DATO YA SE ENCUENTRA EN LA LISTA ");
+                checked=true;
+            }
+            currentNode2=currentNode2.getNextNode();
+        }
+            if(currentNode2.getData()==d){
+                System.out.println("EL DATO YA SE ENCUENTRA EN LA LISTA ");
+                checked=true;
+            }
+            
+        if (checked==false){
+            while(currentNode.getNextNode()!=null){
                     currentNode=currentNode.getNextNode();
         }
-        currentNode.setNextNode(newNode);
-        cont++;
+            currentNode.setNextNode(newNode);
+            cont++;
         
+        }
     }
 
     @Override
