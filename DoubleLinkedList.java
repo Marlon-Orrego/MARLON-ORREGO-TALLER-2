@@ -91,6 +91,7 @@ public class DoubleLinkedList<T extends Number & Comparable> implements ILists<T
 
         //Crear un nodo para el nuevo dato.
         DoubleNode<T> newNode = new DoubleNode<>(d);
+        
         /*Si la lista esta vacía, o el valor del primer elemento de la lista 
             es mayor que el nuevo, insertar el nuevo nodo en la primera posición 
             de la lista y modificar la cabecera respectivamente.*/
@@ -104,25 +105,55 @@ public class DoubleLinkedList<T extends Number & Comparable> implements ILists<T
         contiene la siguiente posición sea menor o igual que el dato a insertar.
          */ else {
             DoubleNode<T> currentNode = head;
+            
+      
             while (currentNode.getNextNode() != null
                     && currentNode.getNextNode().getData().compareTo(d) < 0) {
                 //avanzar
                 currentNode = currentNode.getNextNode();
             }
+            
             /*
             Con esto se seña al nodo adecuado, a continuación insertar el 
             nuevo nodo a continuación de él
              */
-            newNode.setNextNode(currentNode.);
-            
+          
+            if(currentNode.getNextNode()==null){
+                newNode.setNextNode(null);
+                newNode.setPreviousNode(currentNode);
+                currentNode.setNextNode(newNode);
+
+            }else{
+            newNode.setNextNode(currentNode.getNextNode());
+            currentNode.getNextNode().setPreviousNode(newNode);
+            newNode.setPreviousNode(currentNode);
             currentNode.setNextNode(newNode);
+            }
+            
+            
+            
+
+            
         }
 
                 
-           
+    }
+    
+    public void imprimir(){
+      DoubleNode<T> currentNode = head;
+        currentNode=currentNode.getNextNode();
+         do{
+        System.out.println("previo: "+currentNode.getPreviousNode().getData());
+        System.out.println("actual: "+currentNode.getData());
+        //System.out.println("Siguiente: "+currentNode.getNextNode().getData());
+        System.out.println("");
+        currentNode=currentNode.getNextNode();
+              
+         } while(currentNode!=head);
+              
+              
+          
 
-        
-        
     }
  
     @Override
